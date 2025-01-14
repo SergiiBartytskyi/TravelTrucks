@@ -1,0 +1,12 @@
+.btn {
+  background-color: transparent;
+  border: 1px solid #dadde1;
+  width: 145px;
+  color: var(--main);
+  transition: border 300ms linear;
+}
+
+.btn:hover,
+.btn:focus {
+  border: 1px solid #d84343;
+}

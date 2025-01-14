@@ -1,0 +1,11 @@
+.btn {
+  background-color: var(--button);
+  border: none;
+  color: var(--white);
+  transition: background-color 300ms linear;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: var(--button-hover);
+}
