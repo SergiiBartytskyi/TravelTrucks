@@ -1,9 +1,26 @@
 .container {
+  width: 100vw;
+  max-width: 1440px;
+  height: 100vh;
+  padding: 50px 64px;
+  position: relative;
+}
+
+.link {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 1440px;
-  padding-right: 64px;
-  padding-left: 64px;
+  gap: 10px;
+  transition: color 300ms linear;
+}
+
+.link:hover,
+.link:focus {
+  color: var(--button-hover);
+}
+
+.title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

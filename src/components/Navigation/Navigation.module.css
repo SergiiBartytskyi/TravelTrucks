@@ -2,7 +2,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
   gap: 32px;
 }
 
@@ -12,6 +11,12 @@
   line-height: 1.5;
   text-align: center;
   color: var(--main);
+  transition: color 300ms linear;
+}
+
+.link:hover,
+.link:focus {
+  color: var(--button-hover);
 }
 
 .active {
