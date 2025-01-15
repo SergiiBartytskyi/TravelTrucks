@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  flex-direction: column;
+
+  gap: 40px;
+}
+
+.groupWrapper {
+  position: relative;
+}
+
+.location {
+  border: none;
+  border-radius: 12px;
+  padding: 18px 18px 18px 46px;
+  width: 360px;
+  height: 56px;
+
+  background: var(--inputs);
+  color: var(--main);
+}
+
+.location::placeholder {
+  color: var(--gray);
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 18px;
+  pointer-events: none;
+  fill: var(--gray);
+}
+
+.location:not(:placeholder-shown)+.icon {
+  fill: var(--main);
+}

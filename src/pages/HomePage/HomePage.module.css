@@ -1,6 +1,6 @@
 .section {
   background-color: rgba(0, 0, 0, 0.2);
-  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(../../../public/images/bg-picture-1.jpg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(/images/bg-picture-1.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
