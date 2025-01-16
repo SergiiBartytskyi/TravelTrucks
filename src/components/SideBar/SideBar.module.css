@@ -1,12 +1,25 @@
 .container {
   display: flex;
   flex-direction: column;
-
   gap: 40px;
+  width: 360px;
 }
 
 .groupWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inputWrapper {
   position: relative;
+}
+
+.inputLabel {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--gray);
 }
 
 .location {
@@ -18,6 +31,10 @@
 
   background: var(--inputs);
   color: var(--main);
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 .location::placeholder {
@@ -35,4 +52,92 @@
 
 .location:not(:placeholder-shown)+.icon {
   fill: var(--main);
+}
+
+.error {
+  color: var(--button);
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.text {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.filtersWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.filtersType {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  color: var(--main);
+}
+
+.line {
+  width: 360px;
+  height: 2px;
+  background-color: var(--gray-light);
+}
+
+.filtersList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.filterItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid var(--gray-light);
+  border-radius: 12px;
+  padding: 16px 18px;
+  width: 112px;
+  height: 96px;
+
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--main);
+  text-align: center;
+  transition: border-color 300ms linear;
+}
+
+.filtersIcon {
+  flex-shrink: 0;
+  fill: currentColor;
+  width: 32px;
+  height: 32px;
+}
+
+
+.visuallyHidden {
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  margin: -1px;
+}
+
+.filterItem.checked {
+  border-color: var(--button);
 }

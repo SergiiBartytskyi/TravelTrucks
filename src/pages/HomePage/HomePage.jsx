@@ -1,14 +1,7 @@
-import { useNavigate } from "react-router";
-import MainButton from "../../components/ui/buttons/MainButton/MainButton";
+import { Link } from "react-router";
 import styles from "./HomePage.module.css";
 
 const HomePage = () => {
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    navigate("/catalog");
-  };
-
   return (
     <>
       <section className={styles.section}>
@@ -19,7 +12,9 @@ const HomePage = () => {
               You can find everything you want in our catalog
             </p>
 
-            <MainButton handleClick={handleClick}>View Now</MainButton>
+            <Link to="/catalog" className={styles.link}>
+              View Now
+            </Link>
           </div>
         </div>
       </section>

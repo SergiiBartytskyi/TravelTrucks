@@ -1,3 +1,4 @@
+import CatalogList from "../../components/CatalogList/CatalogList";
 import SideBar from "../../components/SideBar/SideBar";
 import styles from "./CatalogPage.module.css";
 
@@ -6,7 +7,12 @@ const CatalogPage = () => {
     <>
       <div className={styles.section}>
         <div className={styles.container}>
-          <SideBar />
+          <div className={styles.sideBarWrapper}>
+            <SideBar />
+          </div>
+          <div className={styles.catalogWrapper}>
+            <CatalogList />
+          </div>
         </div>
       </div>
     </>

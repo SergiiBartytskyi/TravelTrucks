@@ -3,7 +3,9 @@
   height: 72px;
   padding-top: 24px;
   padding-bottom: 24px;
-  background-color: transparent;
+  background-color: var(--inputs);
+  position: fixed;
+  top: 0;
 }
 
 .container {
@@ -23,5 +25,4 @@
 
 .nav {
   margin: 0 auto;
-
 }

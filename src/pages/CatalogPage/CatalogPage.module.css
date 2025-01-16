@@ -4,8 +4,24 @@
 }
 
 .container {
+  display: flex;
+
   width: 100%;
   height: 100%;
   display: flex;
   padding: 48px 64px 52px;
+}
+
+.sideBarWrapper {
+  position: fixed;
+  top: 120px;
+}
+
+.catalogWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  margin-left: 424px;
+  width: 888px;
 }

@@ -38,3 +38,32 @@
   line-height: 1.33333;
   color: var(--inputs);
 }
+
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 10px;
+
+  border: none;
+  border-radius: 200px;
+  padding: 16px;
+  width: 166px;
+  height: 56px;
+
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+
+  background-color: var(--button);
+  color: var(--white);
+
+  transition: background-color 300ms linear;
+}
+
+.link:hover,
+.link:focus {
+  background-color: var(--button-hover);
+}
