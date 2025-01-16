@@ -1,3 +1,5 @@
+import sprite from "/sprite.svg";
+
 const Icon = ({
   width = 20,
   height = 20,
@@ -7,7 +9,7 @@ const Icon = ({
 }) => {
   return (
     <svg width={width} height={height} className={className} {...props}>
-      <use xlinkHref={`/symbol-defs.svg#${iconId}`} />
+      <use href={`${sprite}#${iconId}`} />
     </svg>
   );
 };

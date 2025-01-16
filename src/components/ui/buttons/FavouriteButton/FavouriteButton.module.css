@@ -4,15 +4,15 @@
   border: none;
   padding: 0;
   background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .iconBase {
-  /* stroke: var(--main); */
   fill: var(--main);
-  transition: fill 300ms linear;
 }
 
 .iconFavourite {
-  /* stroke: var(--button); */
   fill: var(--button);
 }

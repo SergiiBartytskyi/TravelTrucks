@@ -27,7 +27,15 @@
   display: flex;
   flex-direction: column;
   align-items: start;
+  gap: 24px;
   width: 524px;
+}
+
+.mainInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
 }
 
 .camperTitleWrapper {
@@ -35,7 +43,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin-bottom: 8px;
+
 
   font-weight: 600;
   font-size: 24px;
@@ -43,9 +51,42 @@
   color: var(--main);
 }
 
+.title {
+  max-width: 334px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .camperPrice {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 12px;
+  max-width: 190px;
+}
+
+
+.descriptionWrapper {
+  width: 100%;
+  height: 24px;
+}
+
+.description {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding-right: 32px;
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.categoiresList {
+  overflow: hidden;
+  width: 100%;
+  height: 104px;
+
 }

@@ -7,11 +7,11 @@ const InfoCard = ({ rating, reviews, location, className }) => {
   return (
     <div className={clsx(styles.container, className)}>
       <div className={styles.infoWrapper}>
-        <Icon iconId="iconStar" className={styles.icon} />
+        <Icon iconId="star" className={styles.icon} />
         <p>${`${rating}(${reviews} reviews)`}</p>
       </div>
       <div className={styles.infoWrapper}>
-        <Icon iconId="iconMap" className={styles.locationIcon} />
+        <Icon iconId="map" className={styles.locationIcon} />
         <p>{formatLocation(location)}</p>
       </div>
     </div>

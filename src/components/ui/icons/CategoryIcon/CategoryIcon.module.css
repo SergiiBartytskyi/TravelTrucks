@@ -1,0 +1,22 @@
+.categoryWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  border-radius: 100px;
+  padding: 12px 18px;
+  height: 44px;
+
+  background-color: var(--badges);
+
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  text-align: center;
+  color: var(--main);
+}
+
+.text {
+  text-transform: capitalize;
+}

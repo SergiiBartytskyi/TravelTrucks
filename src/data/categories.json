@@ -1,0 +1,13 @@
+[
+  { "id": "transmission", "value": "" },
+  { "id": "engine", "value": "" },
+  { "id": "AC", "value": "AC" },
+  { "id": "bathroom", "value": "Bathroom" },
+  { "id": "kitchen", "value": "Kitchen" },
+  { "id": "TV", "value": "TV" },
+  { "id": "radio", "value": "Radio" },
+  { "id": "refrigerator", "value": "Refrigerator" },
+  { "id": "microwave", "value": "Microwave" },
+  { "id": "gas", "value": "Gas" },
+  { "id": "water", "value": "Water" }
+]

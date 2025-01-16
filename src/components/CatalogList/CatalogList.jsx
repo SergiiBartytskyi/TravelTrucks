@@ -8,7 +8,7 @@ const CatalogList = () => {
   // console.log("campers :>> ", campers);
   return (
     <ul className={styles.catalogList}>
-      {testCampers.items.map((camper) => (
+      {campers.map((camper) => (
         <li key={camper.id} className={styles.catalogItem}>
           <CatalogItem camper={camper} />
         </li>
