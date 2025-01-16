@@ -4,29 +4,39 @@ import styles from "./SideBar.module.css";
 import Icon from "../ui/icons/Icon/Icon";
 import clsx from "clsx";
 import * as Yup from "yup";
+import { useDispatch } from "react-redux";
+import { getCampers } from "../../redux/campers/operations";
 
 const CamperSchema = Yup.object().shape({
   location: Yup.string(),
   vehicleEquipment: Yup.array(),
-  vehicleType: Yup.string().oneOf(["van", "fullyIntegrated", "alcove"]),
+  form: Yup.string().oneOf(["panelTruck", "fullyIntegrated", "alcove"]),
 });
 
-const initialValues = { location: "", vehicleEquipment: [], vehicleType: "" };
+const initialValues = { location: "", vehicleEquipment: [], form: "" };
 
 const SideBar = () => {
+  const dispatch = useDispatch();
+
+  const handleSubmit = (values, actions) => {
+    const filters = {
+      location: values.location,
+      vehicleEquipment: values.vehicleEquipment,
+      form: values.form,
+    };
+    const pagination = { page: 1, limit: 10 };
+
+    dispatch(getCampers({ filters, pagination }));
+    console.log("Filters submitted: ", filters);
+
+    actions.resetForm();
+  };
+
   return (
     <>
       <Formik
         initialValues={initialValues}
-        onSubmit={(values, actions) => {
-          console.log(
-            "Form values: ",
-            values.location,
-            values.vehicleEquipment,
-            values.vehicleType
-          );
-          actions.resetForm();
-        }}
+        onSubmit={handleSubmit}
         validationSchema={CamperSchema}
       >
         <Form className={styles.container}>
@@ -155,9 +165,9 @@ const SideBar = () => {
                   <Icon className={styles.filtersIcon} iconId="van" />
                   <Field
                     type="radio"
-                    name="vehicleType"
+                    name="form"
                     // checked={check}
-                    value="van"
+                    value="panelTruck"
                     className={styles.visuallyHidden}
                     // onChange={handleSelect}
                   />
@@ -173,7 +183,7 @@ const SideBar = () => {
                   />
                   <Field
                     type="radio"
-                    name="vehicleType"
+                    name="form"
                     // checked={check}
                     value="fullyIntegrated"
                     className={styles.visuallyHidden}
@@ -188,7 +198,7 @@ const SideBar = () => {
                   <Icon className={styles.filtersIcon} iconId="alcove" />
                   <Field
                     type="radio"
-                    name="vehicleType"
+                    name="form"
                     // checked={vehicleType === "alcove"}
                     value="alcove"
                     className={styles.visuallyHidden}
@@ -197,7 +207,7 @@ const SideBar = () => {
                   Alcove
                 </label>
                 <ErrorMessage
-                  name="vehicleType"
+                  name="form"
                   component="span"
                   className={styles.error}
                 />

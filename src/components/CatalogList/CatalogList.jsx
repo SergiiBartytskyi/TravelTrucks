@@ -1,10 +1,13 @@
-import testCampers from "../../testCampers.json";
+import { useSelector } from "react-redux";
+import { selectCampers } from "../../redux/campers/selectors";
+// import testCampers from "../../testCampers.json";
 import CatalogItem from "../CatalogItem/CatalogItem";
 import styles from "./CatalogList.module.css";
 
 const CatalogList = () => {
-  // console.log("testCampers :>> ", testCampers);
-  const campers = testCampers.items;
+  const campers = useSelector(selectCampers);
+  console.log("campers :>> ", campers);
+  // const campers = testCampers.items;
   // console.log("campers :>> ", campers);
   return (
     <ul className={styles.catalogList}>
