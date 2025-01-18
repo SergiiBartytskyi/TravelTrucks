@@ -1,12 +1,29 @@
+import { useDispatch, useSelector } from "react-redux";
 import CamperFeatures from "../CamperFeatures/CamperFeatures";
 import InfoCard from "../InfoCard/InfoCard";
-import FavouriteButton from "../ui/buttons/FavouriteButton/FavouriteButton";
-import MainButton from "../ui/buttons/MainButton/MainButton";
+import FavoriteButton from "../ui/buttons/FavoriteButton/FavoriteButton";
+import { Link } from "react-router";
+import { selectFavorites } from "../../redux/favorites/selectors";
+import {
+  addToFavorites,
+  removeFromFavorites,
+} from "../../redux/favorites/slice";
 import styles from "./CatalogItem.module.css";
 
 const CatalogItem = ({ camper }) => {
+  const dispatch = useDispatch();
+  const favorites = useSelector(selectFavorites);
   const { id, name, price, rating, location, description, gallery, reviews } =
     camper;
+
+  const isFavorite = favorites.includes(id);
+  const handleFavoriteClick = () => {
+    if (isFavorite) {
+      dispatch(removeFromFavorites(id));
+    } else {
+      dispatch(addToFavorites(id));
+    }
+  };
 
   const entries = Object.entries(camper);
 
@@ -32,9 +49,12 @@ const CatalogItem = ({ camper }) => {
                   currency: "EUR",
                 })
                   .format(price)
-                  .replace(/,/g, " ")}
+                  .replace(/,/g, "")}
               </p>
-              <FavouriteButton id={id} />
+              <FavoriteButton
+                isFavorite={isFavorite}
+                onClick={handleFavoriteClick}
+              />
             </div>
           </div>
 
@@ -51,7 +71,9 @@ const CatalogItem = ({ camper }) => {
         <div className={styles.categoiresList}>
           <CamperFeatures camper={entries} />
         </div>
-        <MainButton>Show more</MainButton>
+        <Link to={`/catalog/${id}`} className={styles.link}>
+          Show more
+        </Link>
       </div>
     </div>
   );

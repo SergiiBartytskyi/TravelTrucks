@@ -1,11 +1,10 @@
 import clsx from "clsx";
 import Icon from "../../icons/Icon/Icon";
 import Button from "../Button/Button";
-import styles from "./FavouriteButton.module.css";
+import styles from "./FavoriteButton.module.css";
 
-const FavouriteButton = (props) => {
-  const { ...rest } = props;
-  const isFavourite = false;
+const FavoriteButton = (props) => {
+  const { isFavorite, ...rest } = props;
 
   return (
     <Button className={styles.btn} {...rest}>
@@ -13,10 +12,10 @@ const FavouriteButton = (props) => {
         iconId="heart"
         width={24}
         height={24}
-        className={clsx(isFavourite ? styles.iconFavourite : styles.iconBase)}
+        className={clsx(isFavorite ? styles.iconFavorite : styles.iconBase)}
       />
     </Button>
   );
 };
 
-export default FavouriteButton;
+export default FavoriteButton;

@@ -2,11 +2,11 @@ import Button from "../Button/Button";
 import styles from "./LoadMoreButton.module.css";
 
 const LoadMoreButton = (props) => {
-  const { children, ...rest } = props;
+  const { ...rest } = props;
 
   return (
     <Button className={styles.btn} {...rest}>
-      {children}
+      Load more
     </Button>
   );
 };

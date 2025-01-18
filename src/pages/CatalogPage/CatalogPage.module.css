@@ -1,6 +1,8 @@
 .section {
   background-color: var(--white);
-  height: 100vh;
+  overflow: hidden;
+  padding-top: 48px;
+  padding-bottom: 52px;
 }
 
 .container {
@@ -8,20 +10,24 @@
   gap: 64px;
   width: 100%;
   height: 100%;
-  display: flex;
-  padding: 120px 64px 52px;
+  padding-right: 64px;
+  padding-left: 64px;
+  flex: 1;
+  overflow: hidden;
 }
 
 .sideBarWrapper {
-  /* position: fixed; */
-  /* top: 120px; */
+  position: fixed;
 }
+
 
 .catalogWrapper {
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
-  gap: 32px;
+  gap: 40px;
 
-  /* margin-left: 424px; */
+  margin-left: 424px;
   width: 888px;
 }

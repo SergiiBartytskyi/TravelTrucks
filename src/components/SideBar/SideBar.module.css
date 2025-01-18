@@ -117,6 +117,14 @@
   transition: border-color 300ms linear;
 }
 
+.filterItem:checked {
+  border-color: var(--button);
+}
+
+.active {
+  border-color: var(--button);
+}
+
 .filtersIcon {
   flex-shrink: 0;
   fill: currentColor;
@@ -136,8 +144,4 @@
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
   margin: -1px;
-}
-
-.filterItem.checked {
-  border-color: var(--button);
 }

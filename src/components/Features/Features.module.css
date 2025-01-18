@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  gap: 40px;
+  margin-top: 44px;
+}
+
+.featuresWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 44px 52px;
+  width: 631px;
+  height: 588px;
+  border-radius: 10px;
+  background-color: var(--inputs);
+}
+
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.details {
+  width: 527px;
+  height: 296px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.detailsTitle {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  color: var(--main);
+}
+
+.detailsInfo {}
+
+.formWrapper {}
