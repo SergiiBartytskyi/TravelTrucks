@@ -3,8 +3,24 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./BookForm.module.css";
 import clsx from "clsx";
+import * as Yup from "yup";
 import MainButton from "../ui/buttons/MainButton/MainButton";
+import Loader from "../Loader/Loader";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import { useSelector } from "react-redux";
+import { selectError, selectLoading } from "../../redux/campers/selectors";
+import toast, { Toaster } from "react-hot-toast";
 
+const BookSchema = Yup.object().shape({
+  userName: Yup.string()
+    .min(2, "Name must be at least 2 characters long")
+    .required("Name is required"),
+  email: Yup.string()
+    .email("Invalid email address")
+    .required("Email is required"),
+  selectedDate: Yup.date().nullable().required("Booking date is required"),
+  textarea: Yup.string().required("Comment is required"),
+});
 const initialValues = {
   userName: "",
   email: "",
@@ -13,15 +29,19 @@ const initialValues = {
 };
 
 const BookForm = () => {
+  const isLoading = useSelector(selectLoading);
+  const error = useSelector(selectError);
+
   const handleSubmit = (values, actions) => {
-    console.log("Selected Date:", values.selectedDate);
+    toast.success("Successfully toasted!");
+    actions.resetForm();
   };
 
   return (
     <Formik
       initialValues={initialValues}
       onSubmit={handleSubmit}
-      // validationSchema={CamperSchema}
+      validationSchema={BookSchema}
     >
       {({ setFieldValue, values }) => (
         <Form>
@@ -59,7 +79,12 @@ const BookForm = () => {
                 className={clsx(styles.input, styles.textarea)}
               />
             </div>
-            <MainButton className={styles.sendBtn}>Send</MainButton>
+            <MainButton className={styles.sendBtn} type="submit">
+              Send
+            </MainButton>
+            {isLoading && <Loader />}
+            {error && <ErrorMessage />}
+            <Toaster />
           </div>
         </Form>
       )}

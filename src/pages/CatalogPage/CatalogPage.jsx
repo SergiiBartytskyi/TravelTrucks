@@ -25,6 +25,7 @@ const CatalogPage = () => {
   const page = useSelector(selectPage);
   const totalPages = useSelector(selectTotalPages);
   const filters = useSelector(selectFilters);
+
   useEffect(() => {
     if (page === 1) dispatch(resetItems());
 

@@ -15,6 +15,10 @@
   gap: 4px;
 }
 
+.underline {
+  text-decoration: underline;
+}
+
 .icon {
   fill: var(--rating);
 }

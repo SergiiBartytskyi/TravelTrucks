@@ -6,9 +6,9 @@ import styles from "./InfoCard.module.css";
 const InfoCard = ({ rating, reviews, location, className }) => {
   return (
     <div className={clsx(styles.container, className)}>
-      <div className={styles.infoWrapper}>
+      <div className={clsx(styles.infoWrapper, styles.underline)}>
         <Icon iconId="star" className={styles.icon} />
-        <p>${`${rating}(${reviews} reviews)`}</p>
+        <p>{`${rating}(${reviews} reviews)`}</p>
       </div>
       <div className={styles.infoWrapper}>
         <Icon iconId="map" className={styles.locationIcon} />

@@ -1,18 +1,12 @@
 import styles from "./Features.module.css";
 import { useSelector } from "react-redux";
-import {
-  selectCamper,
-  selectError,
-  selectLoading,
-} from "../../redux/campers/selectors";
+import { selectCamper } from "../../redux/campers/selectors";
 import CamperFeatures from "../CamperFeatures/CamperFeatures";
 import { formatCamperData } from "../../helpers/formatCamperData";
 import BookForm from "../BookForm/BookForm";
 
 const Features = () => {
   const camper = useSelector(selectCamper);
-  const isLoading = useSelector(selectLoading);
-  const error = useSelector(selectError);
 
   const formatCamper = formatCamperData(camper);
   const entries = Object.entries(formatCamper);

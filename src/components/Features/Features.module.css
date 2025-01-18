@@ -1,7 +1,7 @@
 .container {
   display: flex;
   gap: 40px;
-  margin-top: 44px;
+  height: 588px;
 }
 
 .featuresWrapper {
@@ -10,7 +10,7 @@
   justify-content: space-between;
   padding: 44px 52px;
   width: 631px;
-  height: 588px;
+  height: 100%;
   border-radius: 10px;
   background-color: var(--inputs);
 }
@@ -61,4 +61,6 @@
 
 
 
-.formWrapper {}
+.formWrapper {
+  height: 100%;
+}
