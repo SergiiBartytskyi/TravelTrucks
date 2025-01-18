@@ -1,4 +1,3 @@
-import { useParams } from "react-router";
 import styles from "./Features.module.css";
 import { useSelector } from "react-redux";
 import {
@@ -7,48 +6,16 @@ import {
   selectLoading,
 } from "../../redux/campers/selectors";
 import CamperFeatures from "../CamperFeatures/CamperFeatures";
+import { formatCamperData } from "../../helpers/formatCamperData";
+import BookForm from "../BookForm/BookForm";
 
 const Features = () => {
-  const { id } = useParams();
   const camper = useSelector(selectCamper);
   const isLoading = useSelector(selectLoading);
   const error = useSelector(selectError);
-  const {
-    form,
-    length,
-    width,
-    height,
-    tank,
-    consumption,
-    transmission,
-    engine,
-    AC,
-    bathroom,
-    kitchen,
-    TV,
-    radio,
-    refrigerator,
-    microwave,
-    gas,
-    water,
-  } = camper;
 
-  const entries = Object.entries(camper);
-  // const icons = [
-  //   transmission,
-  //   engine,
-  //   AC,
-  //   bathroom,
-  //   kitchen,
-  //   TV,
-  //   radio,
-  //   refrigerator,
-  //   microwave,
-  //   gas,
-  //   water,
-  // ];
-
-  console.log("camper :>> ", camper);
+  const formatCamper = formatCamperData(camper);
+  const entries = Object.entries(formatCamper);
   return (
     <div className={styles.container}>
       <div className={styles.featuresWrapper}>
@@ -57,10 +24,38 @@ const Features = () => {
         </div>
         <div className={styles.details}>
           <h3 className={styles.detailsTitle}>Vehicle details</h3>
-          <div className={styles.detailsInfo}></div>
+          <div className={styles.line}></div>
+          <div className={styles.detailsInfo}>
+            <div className={styles.detailsPoint}>
+              <p>Form</p>
+              <p>{formatCamper.form}</p>
+            </div>
+            <div className={styles.detailsPoint}>
+              <p>Length</p>
+              <p>{formatCamper.length}</p>
+            </div>
+            <div className={styles.detailsPoint}>
+              <p>Width</p>
+              <p>{formatCamper.width}</p>
+            </div>
+            <div className={styles.detailsPoint}>
+              <p>Height</p>
+              <p>{formatCamper.height}</p>
+            </div>
+            <div className={styles.detailsPoint}>
+              <p>Tank</p>
+              <p>{formatCamper.tank}</p>
+            </div>
+            <div className={styles.detailsPoint}>
+              <p>Consumption</p>
+              <p>{formatCamper.consumption}</p>
+            </div>
+          </div>
         </div>
       </div>
-      <div className={styles.formWrapper}></div>
+      <div className={styles.formWrapper}>
+        <BookForm />
+      </div>
     </div>
   );
 };
