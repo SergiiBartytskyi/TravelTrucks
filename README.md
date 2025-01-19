@@ -75,21 +75,10 @@ To deploy the app on Vercel or Netlify:
 
 ### About the Author
 
-Name: [Sergii Bartytskyi]
+Name: [SergiiBartytskyi]
 Contact: [https://github.com/SergiiBartytskyi]
 Other Projects: [[Links to other projects or portfolio](https://github.com/Anonymous-programmers-glitch/ProjectWaterTracker)]
 
 ### License
 
 This project is licensed under the MIT License.
-
----
-
-### How to Customize:
-
-1. Replace `https://github.com/SergiiBartytskyi/TravelTrucks` with the link to your GitHub repository.
-2. In the "About the Author" section, add your name, contact details, or GitHub profile.
-3. Add or modify instructions for deployment if specific to your use case.
-4. Update any technical or project-specific details that differ from the provided template.
-
-This README file ensures clarity, professionalism, and compliance with project requirements.
