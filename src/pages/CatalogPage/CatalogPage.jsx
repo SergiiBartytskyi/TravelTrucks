@@ -61,10 +61,10 @@ const CatalogPage = () => {
               {shouldShowLoadMore && (
                 <LoadMoreButton type="button" onClick={handlePageChange} />
               )}
-              {isLoading && <Loader />}
-              {error && <ErrorMessage />}
             </div>
           )}
+          {isLoading && <Loader />}
+          {error && <ErrorMessage />}
         </div>
       </div>
     </>
