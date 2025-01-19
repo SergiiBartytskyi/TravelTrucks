@@ -1,6 +1,6 @@
-import styles from "./CamperFeatures.module.css";
 import categories from "../../data/categories.json";
 import CategoryIcon from "../ui/icons/CategoryIcon/CategoryIcon";
+import styles from "./CamperFeatures.module.css";
 
 const CamperFeatures = ({ camper }) => {
   const features = camper.filter((entry) =>

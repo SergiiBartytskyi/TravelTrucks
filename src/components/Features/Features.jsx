@@ -1,9 +1,9 @@
-import styles from "./Features.module.css";
 import { useSelector } from "react-redux";
 import { selectCamper } from "../../redux/campers/selectors";
 import CamperFeatures from "../CamperFeatures/CamperFeatures";
 import { formatCamperData } from "../../helpers/formatCamperData";
 import BookForm from "../BookForm/BookForm";
+import styles from "./Features.module.css";
 
 const Features = () => {
   const camper = useSelector(selectCamper);

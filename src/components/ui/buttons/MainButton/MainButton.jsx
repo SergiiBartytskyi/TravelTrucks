@@ -1,5 +1,5 @@
-import clsx from "clsx";
 import Button from "../Button/Button";
+import clsx from "clsx";
 import styles from "./MainButton.module.css";
 
 const MainButton = (props) => {

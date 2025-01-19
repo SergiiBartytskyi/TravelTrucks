@@ -1,13 +1,13 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import MainButton from "../ui/buttons/MainButton/MainButton";
-import styles from "./SideBar.module.css";
 import Icon from "../ui/icons/Icon/Icon";
-import clsx from "clsx";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { resetItems, resetPagination } from "../../redux/campers/slice";
 import { addFilters } from "../../redux/filters/slice";
 import { useSearchParams } from "react-router";
+import clsx from "clsx";
+import styles from "./SideBar.module.css";
 
 const CamperSchema = Yup.object().shape({
   location: Yup.string(),

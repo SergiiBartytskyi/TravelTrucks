@@ -1,14 +1,14 @@
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import styles from "./BookForm.module.css";
-import clsx from "clsx";
 import * as Yup from "yup";
 import MainButton from "../ui/buttons/MainButton/MainButton";
 import Loader from "../Loader/Loader";
 import { useSelector } from "react-redux";
 import { selectError, selectLoading } from "../../redux/campers/selectors";
 import toast, { Toaster } from "react-hot-toast";
+import clsx from "clsx";
+import styles from "./BookForm.module.css";
 
 const BookSchema = Yup.object().shape({
   userName: Yup.string()

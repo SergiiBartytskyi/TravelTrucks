@@ -18,8 +18,8 @@ import {
   selectPage,
   selectTotalPages,
 } from "../../redux/campers/selectors";
-import styles from "./CatalogPage.module.css";
 import { useSearchParams } from "react-router";
+import styles from "./CatalogPage.module.css";
 
 const CatalogPage = () => {
   const dispatch = useDispatch();

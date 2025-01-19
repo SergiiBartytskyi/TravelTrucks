@@ -5,14 +5,15 @@ import {
   selectError,
   selectLoading,
 } from "../../redux/campers/selectors";
-import { Suspense, useEffect } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { getCamperDetails } from "../../redux/campers/operations";
 import { resetCamper } from "../../redux/campers/slice";
 import Loader from "../../components/Loader/Loader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
-import styles from "./CamperDetailPage.module.css";
 import InfoCard from "../../components/InfoCard/InfoCard";
+import FsLightbox from "fslightbox-react";
 import clsx from "clsx";
+import styles from "./CamperDetailPage.module.css";
 
 const buildLinkClass = ({ isActive }) => {
   return clsx(styles.link, isActive && styles.active);
@@ -24,7 +25,7 @@ const CamperDetailPage = () => {
   const isLoading = useSelector(selectLoading);
   const error = useSelector(selectError);
   const dispatch = useDispatch();
-
+  const [toggler, setToggler] = useState(false);
   const parseId = parseInt(id);
 
   useEffect(() => {
@@ -39,6 +40,7 @@ const CamperDetailPage = () => {
   const { name, rating, reviews, location, price, gallery, description } =
     camper;
 
+  const modalArr = gallery.map((img) => img.original);
   return (
     <>
       <div className={styles.section}>
@@ -71,11 +73,12 @@ const CamperDetailPage = () => {
                     width="292"
                     height="312"
                     className={styles.img}
+                    onClick={() => setToggler(!toggler)}
                   />
                 </li>
               ))}
             </ul>
-
+            <FsLightbox toggler={toggler} sources={modalArr} type="image" />
             <div className={styles.description}>
               <p className={styles.text}>{description}</p>
             </div>
