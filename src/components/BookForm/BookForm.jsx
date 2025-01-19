@@ -1,4 +1,4 @@
-import { Field, Form, Formik } from "formik";
+import { Field, Form, Formik, ErrorMessage } from "formik";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./BookForm.module.css";
@@ -6,7 +6,6 @@ import clsx from "clsx";
 import * as Yup from "yup";
 import MainButton from "../ui/buttons/MainButton/MainButton";
 import Loader from "../Loader/Loader";
-import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import { useSelector } from "react-redux";
 import { selectError, selectLoading } from "../../redux/campers/selectors";
 import toast, { Toaster } from "react-hot-toast";
@@ -33,7 +32,7 @@ const BookForm = () => {
   const error = useSelector(selectError);
 
   const handleSubmit = (values, actions) => {
-    toast.success("Successfully sended!");
+    toast.success("Successfully booking!");
     actions.resetForm();
   };
 
@@ -53,31 +52,60 @@ const BookForm = () => {
               </p>
             </div>
             <div className={styles.form}>
-              <Field
-                name="userName"
-                placeholder="Name*"
-                className={styles.input}
-              />
-              <Field
-                name="email"
-                placeholder="Email*"
-                className={styles.input}
-              />
-              <DatePicker
-                name="selectedDate"
-                type="date"
-                selected={values.selectedDate}
-                placeholderText="Booking date*"
-                onChange={(date) => setFieldValue("selectedDate", date)}
-                dateFormat="dd-MM-yyyy"
-                className={clsx(styles.datePicker, styles.input)}
-              />
-              <Field
-                name="textarea"
-                as="textarea"
-                placeholder="Comment"
-                className={clsx(styles.input, styles.textarea)}
-              />
+              <div className={styles.inputWrapper}>
+                <Field
+                  name="userName"
+                  placeholder="Name*"
+                  className={styles.input}
+                />
+                <ErrorMessage
+                  name="userName"
+                  component="span"
+                  className={styles.error}
+                />
+              </div>
+
+              <div className={styles.inputWrapper}>
+                <Field
+                  name="email"
+                  placeholder="Email*"
+                  className={styles.input}
+                />
+                <ErrorMessage
+                  name="email"
+                  component="span"
+                  className={styles.error}
+                />
+              </div>
+              <div className={styles.inputWrapper}>
+                <DatePicker
+                  name="selectedDate"
+                  type="date"
+                  selected={values.selectedDate}
+                  placeholderText="Booking date*"
+                  onChange={(date) => setFieldValue("selectedDate", date)}
+                  dateFormat="dd-MM-yyyy"
+                  className={clsx(styles.datePicker, styles.input)}
+                />
+                <ErrorMessage
+                  name="selectedDate"
+                  component="span"
+                  className={styles.error}
+                />
+              </div>
+              <div className={styles.inputWrapper}>
+                <Field
+                  name="textarea"
+                  as="textarea"
+                  placeholder="Comment"
+                  className={clsx(styles.input, styles.textarea)}
+                />
+                <ErrorMessage
+                  name="textarea"
+                  component="span"
+                  className={styles.error}
+                />
+              </div>
             </div>
             <MainButton className={styles.sendBtn} type="submit">
               Send

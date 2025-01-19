@@ -76,3 +76,15 @@
 .sendBtn {
   align-self: center;
 }
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.error {
+  position: absolute;
+  color: var(--button);
+  top: 97%;
+}
