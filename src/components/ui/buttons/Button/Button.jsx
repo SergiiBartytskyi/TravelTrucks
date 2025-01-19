@@ -5,11 +5,7 @@ const Button = (props) => {
   const { className, children, ...rest } = props;
 
   return (
-    <button
-      className={clsx(styles.btn, className)}
-      // onClick={handleClick}
-      {...rest}
-    >
+    <button className={clsx(styles.btn, className)} {...rest}>
       {children}
     </button>
   );
