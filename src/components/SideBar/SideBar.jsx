@@ -5,8 +5,9 @@ import Icon from "../ui/icons/Icon/Icon";
 import clsx from "clsx";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { resetItems, setPage } from "../../redux/campers/slice";
+import { resetItems, resetPagination } from "../../redux/campers/slice";
 import { addFilters } from "../../redux/filters/slice";
+import { useSearchParams } from "react-router";
 
 const CamperSchema = Yup.object().shape({
   location: Yup.string(),
@@ -18,17 +19,30 @@ const initialValues = { location: "", equipments: [], form: "" };
 
 const SideBar = () => {
   const dispatch = useDispatch();
+  const [params, setParams] = useSearchParams();
 
   const handleSubmit = (values, actions) => {
     dispatch(resetItems());
+    dispatch(resetPagination());
 
-    const filters = {
-      location: values.location.trim(),
-      equipments: values.equipments,
-      form: values.form,
-    };
-    dispatch(addFilters(filters));
-    dispatch(setPage(1));
+    params.set("location", values.location || "");
+
+    if (values.equipments?.length) {
+      values.equipments.forEach((equipment) => {
+        const value = equipment === "transmission" ? "automatic" : true;
+        params.set(equipment, value);
+      });
+    } else {
+      ["AC", "transmission", "kitchen", "TV", "bathroom"].forEach((key) =>
+        params.delete(key)
+      );
+    }
+
+    params.set("form", values.form || "");
+
+    setParams(params);
+    dispatch(addFilters(params.toString()));
+
     actions.resetForm();
   };
 

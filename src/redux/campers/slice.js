@@ -22,6 +22,7 @@ const slice = createSlice({
     },
     resetPagination(state) {
       state.page = 1;
+      state.totalPages = 1;
     },
     resetCamper(state) {
       state.camper = null;

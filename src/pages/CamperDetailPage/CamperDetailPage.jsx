@@ -1,17 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import {
-  NavLink,
-  Outlet,
-  // useLocation,
-  // useNavigate,
-  useParams,
-} from "react-router";
+import { NavLink, Outlet, useParams } from "react-router";
 import {
   selectCamper,
   selectError,
   selectLoading,
 } from "../../redux/campers/selectors";
-import { Suspense, useEffect, useRef } from "react";
+import { Suspense, useEffect } from "react";
 import { getCamperDetails } from "../../redux/campers/operations";
 import { resetCamper } from "../../redux/campers/slice";
 import Loader from "../../components/Loader/Loader";
@@ -30,11 +24,7 @@ const CamperDetailPage = () => {
   const isLoading = useSelector(selectLoading);
   const error = useSelector(selectError);
   const dispatch = useDispatch();
-  // const locations = useLocation();
-  // const navigate = useNavigate();
 
-  // const backLinkHref = useRef(locations.state ?? "/catalog");
-  // const onClickBack = () => navigate(backLinkHref.current);
   const parseId = parseInt(id);
 
   useEffect(() => {

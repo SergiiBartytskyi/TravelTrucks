@@ -6,7 +6,11 @@ import Loader from "../../components/Loader/Loader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import { useDispatch, useSelector } from "react-redux";
 import { getCampers } from "../../redux/campers/operations";
-import { resetItems, setPage } from "../../redux/campers/slice";
+import {
+  resetItems,
+  resetPagination,
+  setPage,
+} from "../../redux/campers/slice";
 import {
   selectCampers,
   selectLoading,
@@ -14,8 +18,8 @@ import {
   selectPage,
   selectTotalPages,
 } from "../../redux/campers/selectors";
-import { selectFilters } from "../../redux/filters/selectors";
 import styles from "./CatalogPage.module.css";
+import { useSearchParams } from "react-router";
 
 const CatalogPage = () => {
   const dispatch = useDispatch();
@@ -24,13 +28,17 @@ const CatalogPage = () => {
   const error = useSelector(selectError);
   const page = useSelector(selectPage);
   const totalPages = useSelector(selectTotalPages);
-  const filters = useSelector(selectFilters);
+  const [params] = useSearchParams();
+  const url = params.toString();
 
   useEffect(() => {
-    if (page === 1) dispatch(resetItems());
+    dispatch(resetItems());
+    dispatch(resetPagination());
+  }, [dispatch]);
 
-    dispatch(getCampers());
-  }, [dispatch, page, filters]);
+  useEffect(() => {
+    dispatch(getCampers(url));
+  }, [dispatch, page, url]);
 
   const handlePageChange = () => {
     const nextPage = page + 1;
@@ -51,12 +59,12 @@ const CatalogPage = () => {
             <div className={styles.catalogWrapper}>
               <CatalogList />
               {shouldShowLoadMore && (
-                <LoadMoreButton onClick={handlePageChange} />
+                <LoadMoreButton type="button" onClick={handlePageChange} />
               )}
+              {isLoading && <Loader />}
+              {error && <ErrorMessage />}
             </div>
           )}
-          {isLoading && <Loader />}
-          {error && <ErrorMessage />}
         </div>
       </div>
     </>

@@ -1,11 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  filters: {
-    location: "",
-    equipments: [],
-    form: "",
-  },
+  url: "",
 };
 
 const slice = createSlice({
@@ -13,11 +9,10 @@ const slice = createSlice({
   initialState,
   reducers: {
     addFilters(state, action) {
-      // state.filters = { ...state.filters, ...action.payload };
-      state.filters = action.payload;
+      state.url = action.payload;
     },
     resetFilters(state) {
-      state.filters = initialState.filters;
+      state.url = initialState.url;
     },
   },
 });

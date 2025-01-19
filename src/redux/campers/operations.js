@@ -5,29 +5,15 @@ axios.defaults.baseURL = "https://66b1f8e71ca8ad33d4f5f63e.mockapi.io";
 
 export const getCampers = createAsyncThunk(
   "campers/fetchAllCampers",
-  async (_, { getState, thunkAPI }) => {
+  async (url, { getState, thunkAPI }) => {
     const state = getState();
     const { page } = state.campers;
-    const filters = state.filters.filters;
     try {
-      const validFilters = {
-        location: filters.location || "",
-        form: filters.form || "",
-        page: page || 1,
-        limit: 5,
-      };
-
-      if (filters.equipments?.length) {
-        filters.equipments.forEach((equipment) => {
-          validFilters[equipment] =
-            equipment === "transmission" ? "automatic" : true;
-        });
-      }
-
       const response = (
-        await axios.get("/campers", {
+        await axios.get(`/campers?${url}`, {
           params: {
-            ...validFilters,
+            page: page || 1,
+            limit: 5,
           },
         })
       ).data;

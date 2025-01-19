@@ -33,7 +33,7 @@ const BookForm = () => {
   const error = useSelector(selectError);
 
   const handleSubmit = (values, actions) => {
-    toast.success("Successfully toasted!");
+    toast.success("Successfully sended!");
     actions.resetForm();
   };
 
