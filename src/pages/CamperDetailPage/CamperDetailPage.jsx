@@ -33,17 +33,13 @@ const CamperDetailPage = () => {
     dispatch(getCamperDetails(parseId));
   }, [dispatch, parseId]);
 
-  if (isLoading) {
-    return <Loader />;
-  }
-
-  if (error && !camper) {
+  if (error === 404) {
     return <Navigate to="/not-found" />;
   }
 
-  // if (!camper) {
-  //   return <Loader />;
-  // }
+  if (!camper) {
+    return <Loader />;
+  }
 
   const { name, rating, reviews, location, price, gallery, description } =
     camper;

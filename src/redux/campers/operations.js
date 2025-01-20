@@ -31,7 +31,7 @@ export const getCamperDetails = createAsyncThunk(
       const response = (await axios.get(`/campers/${id}`)).data;
       return response;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.status);
     }
   }
 );
