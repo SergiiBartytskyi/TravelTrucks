@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Outlet, useParams } from "react-router";
+import { Navigate, NavLink, Outlet, useParams } from "react-router";
 import {
   selectCamper,
   selectError,
@@ -33,9 +33,17 @@ const CamperDetailPage = () => {
     dispatch(getCamperDetails(parseId));
   }, [dispatch, parseId]);
 
-  if (!camper) {
+  if (isLoading) {
     return <Loader />;
   }
+
+  if (error && !camper) {
+    return <Navigate to="/not-found" />;
+  }
+
+  // if (!camper) {
+  //   return <Loader />;
+  // }
 
   const { name, rating, reviews, location, price, gallery, description } =
     camper;
