@@ -10,6 +10,7 @@ const Features = () => {
 
   const formatCamper = formatCamperData(camper);
   const entries = Object.entries(formatCamper);
+
   return (
     <div className={styles.container}>
       <div className={styles.featuresWrapper}>

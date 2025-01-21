@@ -3,7 +3,10 @@ export const formatCamperData = (camper) => {
 
   return {
     ...rest,
-    form: form.charAt(0).toUpperCase() + form.slice(1),
+    form: form
+      .replace(/([a-z])([A-Z])/g, "$1 $2")
+      .toLowerCase()
+      .replace(/^\w/, (char) => char.toUpperCase()),
     length: length.replace(/(\d+)([a-zA-Z]+)/, "$1 $2"),
     width: width.replace(/(\d+)([a-zA-Z]+)/, "$1 $2"),
     height: height.replace(/(\d+)([a-zA-Z]+)/, "$1 $2"),

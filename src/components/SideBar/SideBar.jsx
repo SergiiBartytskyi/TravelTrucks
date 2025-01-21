@@ -106,7 +106,10 @@ const SideBar = () => {
                         values.equipments.includes("transmission"),
                     })}
                   >
-                    <Icon className={styles.filtersIcon} iconId="automatic" />
+                    <Icon
+                      className={styles.filtersIcon}
+                      iconId="transmission"
+                    />
                     <Field
                       type="checkbox"
                       name="equipments"

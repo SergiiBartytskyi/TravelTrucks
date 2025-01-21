@@ -1,11 +1,9 @@
 import Icon from "../Icon/Icon";
+import { formatCategory } from "../../../../helpers/formatCategories";
 import styles from "./CategoryIcon.module.css";
 
 const CategoryIcon = ({ category }) => {
-  const engineCategories = ["petrol", "hybrid", "diesel"];
-  const iconCategory = engineCategories.includes(category)
-    ? "engine"
-    : category;
+  const iconCategory = formatCategory(category);
 
   return (
     <div className={styles.categoryWrapper}>

@@ -10,14 +10,7 @@ const CamperFeatures = ({ camper }) => {
   return (
     <ul className={styles.featuresWrapper}>
       {features.map((feature) => {
-        if (feature[0] === "transmission") {
-          return (
-            <li key={feature[0]}>
-              <CategoryIcon category={feature[1]} />
-            </li>
-          );
-        }
-        if (feature[0] === "engine") {
+        if (feature[0] === "transmission" || feature[0] === "engine") {
           return (
             <li key={feature[0]}>
               <CategoryIcon category={feature[1]} />
