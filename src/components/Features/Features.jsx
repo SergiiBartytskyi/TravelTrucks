@@ -19,32 +19,32 @@ const Features = () => {
         <div className={styles.details}>
           <h3 className={styles.detailsTitle}>Vehicle details</h3>
           <div className={styles.line}></div>
-          <div className={styles.detailsInfo}>
-            <div className={styles.detailsPoint}>
+          <ul className={styles.detailsInfo}>
+            <li className={styles.detailsPoint}>
               <p>Form</p>
               <p>{formatCamper.form}</p>
-            </div>
-            <div className={styles.detailsPoint}>
+            </li>
+            <li className={styles.detailsPoint}>
               <p>Length</p>
               <p>{formatCamper.length}</p>
-            </div>
-            <div className={styles.detailsPoint}>
+            </li>
+            <li className={styles.detailsPoint}>
               <p>Width</p>
               <p>{formatCamper.width}</p>
-            </div>
-            <div className={styles.detailsPoint}>
+            </li>
+            <li className={styles.detailsPoint}>
               <p>Height</p>
               <p>{formatCamper.height}</p>
-            </div>
-            <div className={styles.detailsPoint}>
+            </li>
+            <li className={styles.detailsPoint}>
               <p>Tank</p>
               <p>{formatCamper.tank}</p>
-            </div>
-            <div className={styles.detailsPoint}>
+            </li>
+            <li className={styles.detailsPoint}>
               <p>Consumption</p>
               <p>{formatCamper.consumption}</p>
-            </div>
-          </div>
+            </li>
+          </ul>
         </div>
       </div>
       <div className={styles.formWrapper}>
