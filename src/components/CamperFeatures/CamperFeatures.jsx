@@ -13,14 +13,14 @@ const CamperFeatures = ({ camper }) => {
         if (feature[0] === "transmission") {
           return (
             <li key={feature[0]}>
-              <CategoryIcon category={feature[0]} />
+              <CategoryIcon category={feature[1]} />
             </li>
           );
         }
         if (feature[0] === "engine") {
           return (
             <li key={feature[0]}>
-              <CategoryIcon category={feature[0]} />
+              <CategoryIcon category={feature[1]} />
             </li>
           );
         }

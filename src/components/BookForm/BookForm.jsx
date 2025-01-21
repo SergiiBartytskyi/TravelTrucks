@@ -31,7 +31,7 @@ const BookForm = () => {
   const isLoading = useSelector(selectLoading);
   const error = useSelector(selectError);
 
-  const handleSubmit = (values, actions) => {
+  const handleSubmit = (_, actions) => {
     toast.success("Successfully booking!");
     actions.resetForm();
   };
