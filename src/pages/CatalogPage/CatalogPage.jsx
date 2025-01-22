@@ -49,25 +49,23 @@ const CatalogPage = () => {
     items.length > 0 && page < totalPages && !isLoading;
 
   return (
-    <>
-      <div className={styles.section}>
-        <div className={styles.container}>
-          <div className={styles.sideBarWrapper}>
-            <SideBar />
-          </div>
-          {!isLoading && (
-            <div className={styles.catalogWrapper}>
-              <CatalogList />
-              {shouldShowLoadMore && (
-                <LoadMoreButton type="button" onClick={handlePageChange} />
-              )}
-            </div>
-          )}
-          {isLoading && <Loader />}
-          {error && <ErrorMessage />}
+    <section className={styles.section}>
+      <div className={styles.container}>
+        <div className={styles.sideBarWrapper}>
+          <SideBar />
         </div>
+        {!isLoading && (
+          <div className={styles.catalogWrapper}>
+            <CatalogList />
+            {shouldShowLoadMore && (
+              <LoadMoreButton type="button" onClick={handlePageChange} />
+            )}
+          </div>
+        )}
+        {isLoading && <Loader />}
+        {error && <ErrorMessage />}
       </div>
-    </>
+    </section>
   );
 };
 
