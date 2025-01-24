@@ -20,6 +20,7 @@ import {
 } from "../../redux/campers/selectors";
 import { useSearchParams } from "react-router";
 import styles from "./CatalogPage.module.css";
+// import { addFilters } from "../../redux/filters/slice";
 
 const CatalogPage = () => {
   const dispatch = useDispatch();
@@ -27,9 +28,15 @@ const CatalogPage = () => {
   const isLoading = useSelector(selectLoading);
   const error = useSelector(selectError);
   const page = useSelector(selectPage);
+  // const page = useSelector(selectPage) || 1;
   const totalPages = useSelector(selectTotalPages);
   const [params] = useSearchParams();
+  // const [params, setParams] = useSearchParams();
+  // params.set("page", page);
+  // setParams(params);
   const url = params.toString();
+  // console.log("url CatalogPage :>> ", url);
+  // dispatch(addFilters(url));
 
   useEffect(() => {
     dispatch(resetItems());
@@ -37,7 +44,9 @@ const CatalogPage = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(getCampers(url));
+    // if (page === 1) dispatch(resetItems());
+    // dispatch(getCampers(url));
+    dispatch(getCampers());
   }, [dispatch, page, url]);
 
   const handlePageChange = () => {

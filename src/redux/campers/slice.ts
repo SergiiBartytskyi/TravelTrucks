@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getCampers, getCamperDetails } from "./operations";
+import { CampersState } from "../types";
 
-const initialState = {
+const initialState: CampersState = {
   items: [],
   camper: null,
   isLoading: false,
@@ -36,11 +37,10 @@ const slice = createSlice({
       })
       .addCase(getCampers.fulfilled, (state, action) => {
         state.isLoading = false;
-        if (state.page === 1) {
-          state.items = action.payload.items;
-        } else {
-          state.items = [...state.items, ...action.payload.items];
-        }
+        state.items =
+          state.page === 1
+            ? action.payload.items
+            : [...state.items, ...action.payload.items];
         state.totalPages = Math.ceil(action.payload.total / 5);
       })
       .addCase(getCampers.rejected, (state, action) => {
