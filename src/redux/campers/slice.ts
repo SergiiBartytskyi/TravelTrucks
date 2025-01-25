@@ -41,6 +41,7 @@ const slice = createSlice({
           state.page === 1
             ? action.payload.items
             : [...state.items, ...action.payload.items];
+        // state.items = [...state.items, ...action.payload.items];
         state.totalPages = Math.ceil(action.payload.total / 5);
       })
       .addCase(getCampers.rejected, (state, action) => {

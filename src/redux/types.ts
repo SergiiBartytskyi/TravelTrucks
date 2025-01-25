@@ -2,7 +2,7 @@ export interface CampersState {
   items: Camper[];
   camper: Camper | null;
   isLoading: boolean;
-  error: string | number | null;
+  error: number | null | undefined;
   page: number;
   totalPages: number;
 }

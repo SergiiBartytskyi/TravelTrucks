@@ -38,15 +38,14 @@ const CatalogPage = () => {
   // console.log("url CatalogPage :>> ", url);
   // dispatch(addFilters(url));
 
-  useEffect(() => {
-    dispatch(resetItems());
-    dispatch(resetPagination());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(resetItems());
+  //   dispatch(resetPagination());
+  // }, [dispatch]);
 
   useEffect(() => {
-    // if (page === 1) dispatch(resetItems());
-    // dispatch(getCampers(url));
-    dispatch(getCampers());
+    if (page === 1) dispatch(resetItems());
+    dispatch(getCampers(url));
   }, [dispatch, page, url]);
 
   const handlePageChange = () => {

@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { FiltersState } from "../types";
 
-const initialState = {
+const initialState: FiltersState = {
   url: "",
 };
 

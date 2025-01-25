@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { FavoritesState } from "../types";
 
-const initialState = {
+const initialState: FavoritesState = {
   items: JSON.parse(localStorage.getItem("favorites")) || [],
 };
 

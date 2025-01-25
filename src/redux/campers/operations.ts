@@ -10,34 +10,29 @@ interface GetCampersResponse {
   total: number;
 }
 
-interface GetCamperDetailsResponse {
-  camper: Camper;
-}
-
 export const getCampers = createAsyncThunk<
   GetCampersResponse,
   void,
-  { state: RootState; rejectValue: string }
+  { state: RootState; rejectValue: number }
 >("campers/fetchAllCampers", async (_, { getState, rejectWithValue }) => {
   try {
     const state = getState();
-    // const { page } = state.campers;
+    const { page } = state.campers;
     const { url } = state.filters;
 
     const response = (
       await axios.get<GetCampersResponse>(`/campers?${url}`, {
         params: {
           // url,
-          // page: page || 1,
+          page: page || 1,
           limit: 5,
         },
       })
     ).data;
     return response;
-  } catch (error) {
-    const message =
-      error instanceof Error ? error.message : "Failed to fetch campers.";
-    return rejectWithValue(message);
+  } catch (error: any) {
+    const status = error.response?.status || 500;
+    return rejectWithValue(status);
   }
 });
 
@@ -64,7 +59,7 @@ export const getCampers = createAsyncThunk<
 // });
 
 export const getCamperDetails = createAsyncThunk<
-  GetCamperDetailsResponse,
+  Camper,
   string,
   { rejectValue: number }
 >("campers/fetchCamperDetails", async (id, { rejectWithValue }) => {
