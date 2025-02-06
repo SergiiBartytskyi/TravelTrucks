@@ -1,30 +1,23 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "../store";
-import { Camper } from "../types";
+import { Camper, GetCampersSuccessfullyResponse } from "../types";
 
 axios.defaults.baseURL = "https://66b1f8e71ca8ad33d4f5f63e.mockapi.io";
 
-interface GetCampersResponse {
-  items: Camper[];
-  total: number;
-}
-
 export const getCampers = createAsyncThunk<
-  GetCampersResponse,
+  GetCampersSuccessfullyResponse,
   void,
   { state: RootState; rejectValue: number }
 >("campers/fetchAllCampers", async (_, { getState, rejectWithValue }) => {
   try {
     const state = getState();
-    const { page } = state.campers;
     const { url } = state.filters;
 
     const response = (
-      await axios.get<GetCampersResponse>(`/campers?${url}`, {
+      await axios.get<GetCampersSuccessfullyResponse>(`/campers?${url}`, {
         params: {
-          // url,
-          page: page || 1,
+          // page: page || 1,
           limit: 5,
         },
       })
@@ -35,6 +28,32 @@ export const getCampers = createAsyncThunk<
     return rejectWithValue(status);
   }
 });
+
+// export const getCampers = createAsyncThunk<
+//   GetCampersSuccessfullyResponse,
+//   void,
+//   { state: RootState; rejectValue: number }
+// >("campers/fetchAllCampers", async (_, { getState, rejectWithValue }) => {
+//   try {
+//     const state = getState();
+//     const { page } = state.campers;
+//     const { url } = state.filters;
+
+//     const response = (
+//       await axios.get<GetCampersSuccessfullyResponse>(`/campers?${url}`, {
+//         params: {
+//           // url,
+//           page: page || 1,
+//           limit: 5,
+//         },
+//       })
+//     ).data;
+//     return response;
+//   } catch (error: any) {
+//     const status = error.response?.status || 500;
+//     return rejectWithValue(status);
+//   }
+// });
 
 // export const getCampers = createAsyncThunk<
 //   GetCampersResponse,

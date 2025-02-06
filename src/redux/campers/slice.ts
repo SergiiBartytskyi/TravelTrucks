@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { getCampers, getCamperDetails } from "./operations";
-import { CampersState } from "../types";
+import { CampersState, GetCampersSuccessfullyResponse } from "../types";
 
 const initialState: CampersState = {
   items: [],
@@ -18,7 +18,7 @@ const slice = createSlice({
     resetItems: (state) => {
       state.items = [];
     },
-    setPage(state, action) {
+    setPage(state, action: PayloadAction<number>) {
       state.page = action.payload;
     },
     resetPagination(state) {
@@ -35,15 +35,18 @@ const slice = createSlice({
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(getCampers.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.items =
-          state.page === 1
-            ? action.payload.items
-            : [...state.items, ...action.payload.items];
-        // state.items = [...state.items, ...action.payload.items];
-        state.totalPages = Math.ceil(action.payload.total / 5);
-      })
+      .addCase(
+        getCampers.fulfilled,
+        (state, action: PayloadAction<GetCampersSuccessfullyResponse>) => {
+          state.isLoading = false;
+          state.items =
+            state.page === 1
+              ? action.payload.items
+              : [...state.items, ...action.payload.items];
+          // state.items = [...state.items, ...action.payload.items];
+          state.totalPages = Math.ceil(action.payload.total / 5);
+        }
+      )
       .addCase(getCampers.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;

@@ -59,3 +59,8 @@ export interface FiltersState {
 export interface FavoritesState {
   items: string[];
 }
+
+export interface GetCampersSuccessfullyResponse {
+  items: Camper[];
+  total: number;
+}

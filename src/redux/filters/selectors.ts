@@ -1,1 +1,3 @@
-export const selectFilters = (state) => state.filters.url;
+import { RootState } from "../store";
+
+export const selectFilters = (state: RootState) => state.filters.url;
