@@ -23,7 +23,6 @@ import styles from "./CatalogPage.module.css";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { selectFilters } from "../../redux/filters/selectors";
 import { addFilters, resetFilter } from "../../redux/filters/slice";
-// import { addFilters } from "../../redux/filters/slice";
 
 const CatalogPage = () => {
   const dispatch = useAppDispatch();
@@ -36,51 +35,18 @@ const CatalogPage = () => {
   const [params, setParams] = useSearchParams();
 
   useEffect(() => {
-    dispatch(resetItems());
-    dispatch(resetPagination());
-    dispatch(resetFilter());
-
-    if (!params.get("page")) {
-      const newParams = new URLSearchParams();
-      newParams.set("page", "1");
-      setParams(newParams);
-    }
-  }, [dispatch, params, setParams]);
+    params.set("page", currentPage.toString());
+    params.set("limit", "5");
+    setParams(params);
+  }, [currentPage, params, setParams]);
+  const url = params.toString();
+  console.log("url :>> ", url);
 
   useEffect(() => {
-    const newParams = new URLSearchParams(params);
-    newParams.set("page", currentPage.toString());
-    setParams(newParams);
-
-    const url = newParams.toString();
     dispatch(addFilters(url));
-  }, [dispatch, currentPage, params, setParams]);
-
-  // useEffect(() => {
-  //   if (page === 1) dispatch(resetItems());
-  //   dispatch(getCampers(url));
-  // }, [dispatch, page, url]);
-
-  // const fetchData = useCallback(() => {
-  //   // if (currentPage === 1) dispatch(resetItems());
-
-  //   // const fetchCampers = async () => {
-  //   //   await dispatch(getCampers());
-  //   // };
-  //   // fetchCampers();
-
-  //   dispatch(getCampers());
-  // }, [dispatch, currentPage]);
-
-  useEffect(() => {
-    // fetchData();
     dispatch(getCampers());
-  }, [dispatch, currentPage]);
+  }, [dispatch, url]);
 
-  // const handlePageChange = () => {
-  //   const nextPage = page + 1;
-  //   dispatch(setPage(nextPage));
-  // };
   const handlePageChange = () => {
     dispatch(setPage(currentPage + 1));
   };

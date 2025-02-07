@@ -16,10 +16,10 @@ export const getCampers = createAsyncThunk<
 
     const response = (
       await axios.get<GetCampersSuccessfullyResponse>(`/campers?${url}`, {
-        params: {
-          // page: page || 1,
-          limit: 5,
-        },
+        // params: {
+        // page: page || 1,
+        // limit: 5,
+        // },
       })
     ).data;
     return response;
