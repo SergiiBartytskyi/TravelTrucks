@@ -1,7 +1,17 @@
 import { Link } from "react-router";
 import styles from "./HomePage.module.css";
+import { useEffect } from "react";
+import { useAppDispatch } from "../../redux/hooks";
+import { resetCampers } from "../../redux/campers/slice";
+import { resetFilter } from "../../redux/filters/slice";
 
 const HomePage = () => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(resetCampers());
+    dispatch(resetFilter());
+  }, [dispatch]);
   return (
     <section className={styles.section}>
       <div className={styles.container}>

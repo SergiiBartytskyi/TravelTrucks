@@ -7,7 +7,7 @@ import {
 } from "../../redux/campers/selectors";
 import { Suspense, useEffect, useState } from "react";
 import { getCamperDetails } from "../../redux/campers/operations";
-import { resetCamper } from "../../redux/campers/slice";
+// import { resetCamper } from "../../redux/campers/slice";
 import Loader from "../../components/Loader/Loader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import InfoCard from "../../components/InfoCard/InfoCard";
@@ -29,7 +29,7 @@ const CamperDetailPage = () => {
   const parseId = parseInt(id);
 
   useEffect(() => {
-    dispatch(resetCamper());
+    // dispatch(resetCamper());
     dispatch(getCamperDetails(parseId));
   }, [dispatch, parseId]);
 

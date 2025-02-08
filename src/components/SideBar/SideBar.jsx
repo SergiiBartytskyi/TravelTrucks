@@ -3,8 +3,8 @@ import MainButton from "../ui/buttons/MainButton/MainButton";
 import Icon from "../ui/icons/Icon/Icon";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { resetItems, resetPagination } from "../../redux/campers/slice";
-import { addFilters } from "../../redux/filters/slice";
+import { resetCampers } from "../../redux/campers/slice";
+import { resetFilter, setUrl } from "../../redux/filters/slice";
 import { useSearchParams } from "react-router";
 import clsx from "clsx";
 import styles from "./SideBar.module.css";
@@ -22,10 +22,13 @@ const SideBar = () => {
   const [params, setParams] = useSearchParams();
 
   const handleSubmit = (values, actions) => {
-    dispatch(resetItems());
-    dispatch(resetPagination());
+    dispatch(resetCampers());
+    dispatch(resetFilter());
+    params.forEach((_, key) => params.delete(key));
 
-    params.set("location", values.location || "");
+    if (values.location) {
+      params.set("location", values.location);
+    }
 
     if (values.equipments?.length) {
       values.equipments.forEach((equipment) => {
@@ -38,10 +41,12 @@ const SideBar = () => {
       );
     }
 
-    params.set("form", values.form || "");
+    if (values.form) {
+      params.set("form", values.form);
+    }
 
     setParams(params);
-    dispatch(addFilters(params.toString()));
+    dispatch(setUrl(params.toString()));
 
     actions.resetForm();
   };

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { getCampers, getCamperDetails } from "./operations";
-import { CampersState, GetCampersSuccessfullyResponse } from "../types";
+import { CampersState, GetCampersResponse } from "../types";
 
 const initialState: CampersState = {
   items: [],
@@ -15,18 +15,15 @@ const slice = createSlice({
   name: "campers",
   initialState,
   reducers: {
-    resetItems: (state) => {
-      state.items = [];
-    },
     setPage(state, action: PayloadAction<number>) {
       state.page = action.payload;
     },
-    resetPagination(state) {
+    resetCampers(state) {
+      state.items = [];
+      state.camper = null;
+      state.error = null;
       state.page = 1;
       state.totalPages = 1;
-    },
-    resetCamper(state) {
-      state.camper = null;
     },
   },
   extraReducers: (builder) => {
@@ -37,7 +34,7 @@ const slice = createSlice({
       })
       .addCase(
         getCampers.fulfilled,
-        (state, action: PayloadAction<GetCampersSuccessfullyResponse>) => {
+        (state, action: PayloadAction<GetCampersResponse>) => {
           state.isLoading = false;
           state.items =
             state.page === 1
@@ -67,7 +64,6 @@ const slice = createSlice({
   },
 });
 
-export const { resetItems, setPage, resetPagination, resetCamper } =
-  slice.actions;
+export const { setPage, resetCampers } = slice.actions;
 
 export default slice.reducer;

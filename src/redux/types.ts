@@ -60,7 +60,7 @@ export interface FavoritesState {
   items: string[];
 }
 
-export interface GetCampersSuccessfullyResponse {
+export interface GetCampersResponse {
   items: Camper[];
   total: number;
 }
