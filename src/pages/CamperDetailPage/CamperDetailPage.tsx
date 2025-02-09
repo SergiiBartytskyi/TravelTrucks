@@ -1,4 +1,3 @@
-import { useDispatch, useSelector } from "react-redux";
 import { Navigate, NavLink, Outlet, useParams } from "react-router";
 import {
   selectCamper,
@@ -7,31 +6,34 @@ import {
 } from "../../redux/campers/selectors";
 import { Suspense, useEffect, useState } from "react";
 import { getCamperDetails } from "../../redux/campers/operations";
-// import { resetCamper } from "../../redux/campers/slice";
 import Loader from "../../components/Loader/Loader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import InfoCard from "../../components/InfoCard/InfoCard";
 import FsLightbox from "fslightbox-react";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { Camper } from "../../redux/types";
 import clsx from "clsx";
 import styles from "./CamperDetailPage.module.css";
 
-const buildLinkClass = ({ isActive }) => {
+const buildLinkClass = ({ isActive }: { isActive: boolean }): string => {
   return clsx(styles.link, isActive && styles.active);
 };
 
 const CamperDetailPage = () => {
-  const { id } = useParams();
-  const camper = useSelector(selectCamper);
-  const isLoading = useSelector(selectLoading);
-  const error = useSelector(selectError);
-  const dispatch = useDispatch();
-  const [toggler, setToggler] = useState(false);
-  const parseId = parseInt(id);
+  const { id } = useParams<{ id: string }>();
+  const dispatch = useAppDispatch();
+  const camper = useAppSelector(selectCamper) as Camper | null;
+  const isLoading = useAppSelector(selectLoading);
+  const error = useAppSelector(selectError);
+  const [toggler, setToggler] = useState<boolean>(false);
 
   useEffect(() => {
-    // dispatch(resetCamper());
-    dispatch(getCamperDetails(parseId));
-  }, [dispatch, parseId]);
+    if (id) {
+      dispatch(getCamperDetails(id));
+    } else {
+      console.error("Camper ID is undefined");
+    }
+  }, [dispatch, id]);
 
   if (error === 404) {
     return <Navigate to="/not-found" />;

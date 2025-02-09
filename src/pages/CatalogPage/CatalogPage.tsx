@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import CatalogList from "../../components/CatalogList/CatalogList";
 import SideBar from "../../components/SideBar/SideBar";
 import LoadMoreButton from "../../components/ui/buttons/LoadMoreButton/LoadMoreButton";
@@ -17,7 +17,6 @@ import styles from "./CatalogPage.module.css";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { selectFilters } from "../../redux/filters/selectors";
 import { useSearchParams } from "react-router";
-import { setUrl } from "../../redux/filters/slice";
 
 const CatalogPage = () => {
   const dispatch = useAppDispatch();
@@ -27,7 +26,8 @@ const CatalogPage = () => {
   const currentPage = useAppSelector(selectPage);
   const totalPages = useAppSelector(selectTotalPages);
   const url = useAppSelector(selectFilters);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
+
   useEffect(() => {
     if (searchParams.toString() !== url) {
       dispatch(getCampers(url));
@@ -36,12 +36,12 @@ const CatalogPage = () => {
     }
   }, [dispatch, currentPage, url]);
 
-  const handlePageChange = () => {
-    const nextPage = currentPage + 1;
+  const handlePageChange = (): void => {
+    const nextPage: number = currentPage + 1;
     dispatch(setPage(nextPage));
   };
-  console.log("currentPage :>> ", currentPage);
-  const shouldShowLoadMore =
+
+  const shouldShowLoadMore: boolean =
     items.length > 0 && currentPage < totalPages && !isLoading;
 
   return (
