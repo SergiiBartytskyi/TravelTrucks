@@ -19,34 +19,34 @@ const initialValues = { location: "", equipments: [], form: "" };
 
 const SideBar = () => {
   const dispatch = useDispatch();
-  const [params, setParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const handleSubmit = (values, actions) => {
     dispatch(resetCampers());
     dispatch(resetFilter());
-    params.forEach((_, key) => params.delete(key));
+    searchParams.forEach((_, key) => searchParams.delete(key));
 
     if (values.location) {
-      params.set("location", values.location);
+      searchParams.set("location", values.location);
     }
 
     if (values.equipments?.length) {
       values.equipments.forEach((equipment) => {
         const value = equipment === "transmission" ? "automatic" : true;
-        params.set(equipment, value);
+        searchParams.set(equipment, value);
       });
     } else {
       ["AC", "transmission", "kitchen", "TV", "bathroom"].forEach((key) =>
-        params.delete(key)
+        searchParams.delete(key)
       );
     }
 
     if (values.form) {
-      params.set("form", values.form);
+      searchParams.set("form", values.form);
     }
 
-    setParams(params);
-    dispatch(setUrl(params.toString()));
+    setSearchParams(searchParams);
+    dispatch(setUrl(searchParams.toString()));
 
     actions.resetForm();
   };

@@ -3,7 +3,6 @@ import { FiltersState } from "../types";
 
 const initialState: FiltersState = {
   url: "",
-  // url: "page=1&limit=5",
 };
 
 const slice = createSlice({
@@ -12,11 +11,9 @@ const slice = createSlice({
   reducers: {
     setUrl(state, action: PayloadAction<string>) {
       state.url = action.payload;
-      // state.url = state.url + action.payload;
     },
     resetFilter(state) {
       state.url = "";
-      // state.url = "page=1&limit=5";
     },
   },
 });

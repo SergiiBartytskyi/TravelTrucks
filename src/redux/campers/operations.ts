@@ -11,19 +11,18 @@ export const getCampers = createAsyncThunk<
   { state: RootState; rejectValue: number }
 >("campers/fetchAllCampers", async (url, { getState, rejectWithValue }) => {
   const state = getState();
-  // const { page } = state.campers;
+  const { page } = state.campers;
   try {
     const response = (
       await axios.get<GetCampersResponse>(`/campers?${url}`, {
         params: {
-          // page: page || 1,
+          page: page || 1,
           limit: 5,
         },
       })
     ).data;
     return response;
   } catch (error: any) {
-    // return rejectWithValue(error.message);
     return rejectWithValue(error.status);
   }
 });
@@ -34,11 +33,9 @@ export const getCamperDetails = createAsyncThunk<
   { rejectValue: number }
 >("campers/fetchCamperDetails", async (id, { rejectWithValue }) => {
   try {
-    const response = (await axios.get(`/campers/${id}`)).data;
+    const response = (await axios.get<Camper>(`/campers/${id}`)).data;
     return response;
   } catch (error: any) {
-    // const status = error.response?.status || 500;
-    // return rejectWithValue(status);
     return rejectWithValue(error.status);
   }
 });

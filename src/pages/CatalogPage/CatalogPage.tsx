@@ -27,41 +27,18 @@ const CatalogPage = () => {
   const currentPage = useAppSelector(selectPage);
   const totalPages = useAppSelector(selectTotalPages);
   const url = useAppSelector(selectFilters);
-  const [params, setParams] = useSearchParams();
-
-  // Memoize the URL to avoid unnecessary re-renders
-  const memoizedUrl = useMemo(() => {
-    const updateUrl = new URLSearchParams(params);
-    updateUrl.set("page", currentPage.toString());
-    return updateUrl.toString();
-  }, [params, currentPage]);
-
+  const [searchParams, setSearchParams] = useSearchParams();
   useEffect(() => {
-    // Update URL params and dispatch the URL to Redux state
-    const updateUrl = new URLSearchParams(params);
-    updateUrl.set("page", currentPage.toString());
-    setParams(updateUrl);
-    dispatch(setUrl(updateUrl.toString()));
-  }, [dispatch, currentPage, params]);
-
-  useEffect(() => {
-    // Fetch campers based on the URL from Redux state
-    if (url) {
+    if (searchParams.toString() !== url) {
       dispatch(getCampers(url));
+    } else {
+      dispatch(getCampers(searchParams.toString()));
     }
-  }, [dispatch, url]);
-
-  // useEffect(() => {
-  //   const updateUrl = new URLSearchParams(params);
-  //   updateUrl.set("page", currentPage.toString());
-  //   setParams(updateUrl);
-
-  //   dispatch(setUrl(updateUrl.toString()));
-  //   dispatch(getCampers(updateUrl.toString()));
-  // }, [dispatch, currentPage, url]);
+  }, [dispatch, currentPage, url]);
 
   const handlePageChange = () => {
-    dispatch(setPage(currentPage + 1));
+    const nextPage = currentPage + 1;
+    dispatch(setPage(nextPage));
   };
   console.log("currentPage :>> ", currentPage);
   const shouldShowLoadMore =

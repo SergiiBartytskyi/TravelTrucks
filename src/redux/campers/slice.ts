@@ -32,18 +32,14 @@ const slice = createSlice({
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(
-        getCampers.fulfilled,
-        (state, action: PayloadAction<GetCampersResponse>) => {
-          state.isLoading = false;
-          state.items =
-            state.page === 1
-              ? action.payload.items
-              : [...state.items, ...action.payload.items];
-          // state.items = [...state.items, ...action.payload.items];
-          state.totalPages = Math.ceil(action.payload.total / 5);
-        }
-      )
+      .addCase(getCampers.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.items =
+          state.page === 1
+            ? action.payload.items
+            : [...state.items, ...action.payload.items];
+        state.totalPages = Math.ceil(action.payload.total / 5);
+      })
       .addCase(getCampers.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
