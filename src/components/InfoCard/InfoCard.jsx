@@ -1,5 +1,5 @@
 import Icon from "../ui/icons/Icon/Icon";
-import { formatLocation } from "../../helpers/formatLocation.js";
+import { formatLocation } from "../../helpers/formatLocation";
 import clsx from "clsx";
 import styles from "./InfoCard.module.css";
 

@@ -1,4 +1,4 @@
-export const formatCategory = (category) => {
+export const formatCategory = (category: string): string => {
   if (["petrol", "hybrid", "diesel"].includes(category)) {
     return "engine";
   }

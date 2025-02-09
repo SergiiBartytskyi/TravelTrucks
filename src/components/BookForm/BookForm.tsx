@@ -1,11 +1,12 @@
-import { Field, Form, Formik, ErrorMessage } from "formik";
+import { Field, Form, Formik, ErrorMessage, FormikHelpers } from "formik";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import * as Yup from "yup";
 import MainButton from "../ui/buttons/MainButton/MainButton";
 import Loader from "../Loader/Loader";
-import { useSelector } from "react-redux";
+import Error from "../ErrorMessage/ErrorMessage";
 import { selectError, selectLoading } from "../../redux/campers/selectors";
+import { useAppSelector } from "../../redux/hooks";
 import toast, { Toaster } from "react-hot-toast";
 import clsx from "clsx";
 import styles from "./BookForm.module.css";
@@ -20,7 +21,14 @@ const BookSchema = Yup.object().shape({
   selectedDate: Yup.date().nullable().required("Booking date is required"),
   textarea: Yup.string().required("Comment is required"),
 });
-const initialValues = {
+
+type FormValues = {
+  userName: string;
+  email: string;
+  selectedDate: Date | null;
+  textarea: string;
+};
+const initialValues: FormValues = {
   userName: "",
   email: "",
   selectedDate: null,
@@ -28,10 +36,13 @@ const initialValues = {
 };
 
 const BookForm = () => {
-  const isLoading = useSelector(selectLoading);
-  const error = useSelector(selectError);
+  const isLoading = useAppSelector(selectLoading);
+  const error = useAppSelector(selectError);
 
-  const handleSubmit = (_, actions) => {
+  const handleSubmit = (
+    values: FormValues,
+    actions: FormikHelpers<FormValues>
+  ): void => {
     toast.success("Successfully booking!");
     actions.resetForm();
   };
@@ -80,7 +91,6 @@ const BookForm = () => {
               <div className={styles.inputWrapper}>
                 <DatePicker
                   name="selectedDate"
-                  type="date"
                   selected={values.selectedDate}
                   placeholderText="Booking date*"
                   onChange={(date) => setFieldValue("selectedDate", date)}
@@ -111,7 +121,7 @@ const BookForm = () => {
               Send
             </MainButton>
             {isLoading && <Loader />}
-            {error && <ErrorMessage />}
+            {error && <Error />}
             <Toaster />
           </div>
         </Form>

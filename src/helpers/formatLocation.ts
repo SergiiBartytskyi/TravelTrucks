@@ -1,4 +1,4 @@
-export const formatLocation = (location) => {
+export const formatLocation = (location: string): string => {
   if (!location) return "";
 
   const [country, city] = location.split(", ");

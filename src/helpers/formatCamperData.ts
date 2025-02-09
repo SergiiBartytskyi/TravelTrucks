@@ -1,8 +1,18 @@
-export const formatCamperData = (camper) => {
-  const { form, length, width, height, tank, consumption, ...rest } = camper;
+import { Camper } from "../redux/types";
+
+type FormatCamper = {
+  form: string;
+  length: string;
+  width: string;
+  height: string;
+  tank: string;
+  consumption: string;
+};
+
+export const formatCamperData = (camper: Camper): FormatCamper => {
+  const { form, length, width, height, tank, consumption } = camper;
 
   return {
-    ...rest,
     form: form
       .replace(/([a-z])([A-Z])/g, "$1 $2")
       .toLowerCase()
