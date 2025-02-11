@@ -1,11 +1,14 @@
+import { ButtonHTMLAttributes, FC } from "react";
 import Icon from "../../icons/Icon/Icon";
 import Button from "../Button/Button";
 import clsx from "clsx";
 import styles from "./FavoriteButton.module.css";
 
-const FavoriteButton = (props) => {
-  const { isFavorite, ...rest } = props;
+type FavoriteButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  isFavorite: boolean;
+};
 
+const FavoriteButton: FC<FavoriteButtonProps> = ({ isFavorite, ...rest }) => {
   return (
     <Button className={styles.btn} {...rest}>
       <Icon

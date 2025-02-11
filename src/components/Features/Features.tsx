@@ -7,18 +7,19 @@ import { useAppSelector } from "../../redux/hooks";
 
 const Features = () => {
   const camper = useAppSelector(selectCamper);
+
   if (!camper) {
     return <div>Something went wrong. Try again!</div>;
   }
 
   const formatCamper = formatCamperData(camper);
-  const entries = Object.entries(formatCamper);
+  const entries = Object.entries(camper);
 
   return (
     <div className={styles.container}>
       <div className={styles.featuresWrapper}>
         <div className={styles.features}>
-          <CamperFeatures camper={entries} />
+          <CamperFeatures camperEntries={entries} />
         </div>
         <div className={styles.details}>
           <h3 className={styles.detailsTitle}>Vehicle details</h3>

@@ -1,7 +1,11 @@
 import { Link } from "react-router";
 import LogoIcon from "../ui/icons/LogoIcon/LogoIcon";
 
-const Logo = ({ className }) => {
+type LogoProps = {
+  className: string;
+};
+
+const Logo = ({ className }: LogoProps) => {
   return (
     <Link to="/" className={className}>
       <LogoIcon />

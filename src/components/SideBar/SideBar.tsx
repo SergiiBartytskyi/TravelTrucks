@@ -1,13 +1,14 @@
-import { ErrorMessage, Field, Form, Formik } from "formik";
+import { ErrorMessage, Field, Form, Formik, FormikHelpers } from "formik";
 import MainButton from "../ui/buttons/MainButton/MainButton";
 import Icon from "../ui/icons/Icon/Icon";
 import * as Yup from "yup";
-import { useDispatch } from "react-redux";
 import { resetCampers } from "../../redux/campers/slice";
 import { resetFilter, setUrl } from "../../redux/filters/slice";
 import { useSearchParams } from "react-router";
 import clsx from "clsx";
 import styles from "./SideBar.module.css";
+import { InitialValuesProps } from "./SideBar.types";
+import { useAppDispatch } from "../../redux/hooks";
 
 const CamperSchema = Yup.object().shape({
   location: Yup.string(),
@@ -15,13 +16,20 @@ const CamperSchema = Yup.object().shape({
   form: Yup.string().oneOf(["panelTruck", "fullyIntegrated", "alcove"]),
 });
 
-const initialValues = { location: "", equipments: [], form: "" };
+const initialValues: InitialValuesProps = {
+  location: "",
+  equipments: [],
+  form: "",
+};
 
 const SideBar = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const handleSubmit = (values, actions) => {
+  const handleSubmit = (
+    values: InitialValuesProps,
+    actions: FormikHelpers<InitialValuesProps>
+  ) => {
     dispatch(resetCampers());
     dispatch(resetFilter());
     searchParams.forEach((_, key) => searchParams.delete(key));
@@ -32,7 +40,8 @@ const SideBar = () => {
 
     if (values.equipments?.length) {
       values.equipments.forEach((equipment) => {
-        const value = equipment === "transmission" ? "automatic" : true;
+        const value: string =
+          equipment === "transmission" ? "automatic" : "true";
         searchParams.set(equipment, value);
       });
     } else {

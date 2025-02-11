@@ -2,7 +2,11 @@ import Icon from "../Icon/Icon";
 import { formatCategory } from "../../../../helpers/formatCategories";
 import styles from "./CategoryIcon.module.css";
 
-const CategoryIcon = ({ category }) => {
+type CategoryIconProps = {
+  category: string;
+};
+
+const CategoryIcon = ({ category }: CategoryIconProps) => {
   const iconCategory = formatCategory(category);
 
   return (

@@ -75,7 +75,7 @@ const CatalogItem: FC<CamperProps> = ({ camper }) => {
           <p className={styles.description}>{description}</p>
         </div>
         <div className={styles.categoiresList}>
-          <CamperFeatures camper={entries} />
+          <CamperFeatures camperEntries={entries} />
         </div>
         <Link to={`/catalog/${id}`} className={styles.link}>
           Show more

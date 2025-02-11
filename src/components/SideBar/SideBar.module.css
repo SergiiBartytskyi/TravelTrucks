@@ -115,6 +115,7 @@
   color: var(--main);
   text-align: center;
   transition: border-color 300ms linear;
+  cursor: pointer;
 }
 
 .filterItem:checked {

@@ -2,10 +2,19 @@ import { NavLink } from "react-router";
 import clsx from "clsx";
 import styles from "./Navigation.module.css";
 
-const getNavLinkClass = (props) => {
-  return clsx(styles.link, props.isActive && styles.active);
+type NavagationProps = {
+  className: string;
 };
-const Navigation = ({ className }) => {
+
+type GetNavLinkClassProps = {
+  isActive: boolean;
+};
+
+const getNavLinkClass = ({ isActive }: GetNavLinkClassProps): string => {
+  return clsx(styles.link, isActive && styles.active);
+};
+
+const Navigation = ({ className }: NavagationProps) => {
   return (
     <nav className={className}>
       <ul className={styles.list}>

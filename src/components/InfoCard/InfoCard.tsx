@@ -3,7 +3,14 @@ import { formatLocation } from "../../helpers/formatLocation";
 import clsx from "clsx";
 import styles from "./InfoCard.module.css";
 
-const InfoCard = ({ rating, reviews, location, className }) => {
+type InfoCardProps = {
+  rating: number;
+  reviews: number;
+  location: string;
+  className: string;
+};
+
+const InfoCard = ({ rating, reviews, location, className }: InfoCardProps) => {
   return (
     <div className={clsx(styles.container, className)}>
       <div className={clsx(styles.infoWrapper, styles.underline)}>

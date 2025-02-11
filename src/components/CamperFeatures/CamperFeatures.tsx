@@ -4,10 +4,14 @@ import CategoryIcon from "../ui/icons/CategoryIcon/CategoryIcon";
 import styles from "./CamperFeatures.module.css";
 
 interface CamperFeaturesProps {
-  camper: [string, any][];
+  camperEntries: [string, any][];
 }
-const CamperFeatures: FC<CamperFeaturesProps> = ({ camper }) => {
-  const features = camper.filter(([key, value]) =>
+
+const CamperFeatures = ({ camperEntries }: CamperFeaturesProps) => {
+  if (!camperEntries) {
+    return <div>Something went wrong. Try again!</div>;
+  }
+  const features = camperEntries.filter(([key, value]) =>
     categories.some((category) => key === category.id && value)
   );
 

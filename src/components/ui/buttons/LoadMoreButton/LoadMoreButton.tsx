@@ -1,7 +1,10 @@
+import { ButtonHTMLAttributes, FC } from "react";
 import Button from "../Button/Button";
 import styles from "./LoadMoreButton.module.css";
 
-const LoadMoreButton = (props) => {
+type LoadMoreButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
+
+const LoadMoreButton: FC<LoadMoreButtonProps> = (props) => {
   const { ...rest } = props;
 
   return (

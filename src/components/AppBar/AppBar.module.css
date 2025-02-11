@@ -1,8 +1,6 @@
 .header {
   width: 100%;
   height: 72px;
-  padding-top: 24px;
-  padding-bottom: 24px;
   background-color: var(--inputs);
   position: fixed;
   top: 0;
@@ -22,8 +20,12 @@
 
 .logo {
   position: absolute;
+  padding-top: 24px;
+  padding-bottom: 24px;
 }
 
 .nav {
   margin: 0 auto;
+  padding-top: 24px;
+  padding-bottom: 24px;
 }
