@@ -1,12 +1,9 @@
+import { Review } from "../../redux/types";
 import ReviewerRating from "../ReviewerRating/ReviewerRating";
 import styles from "./ReviewItem.module.css";
 
 type ReviewItemProps = {
-  review: {
-    reviewer_name: string;
-    reviewer_rating: number;
-    comment: string;
-  };
+  review: Review;
 };
 
 const ReviewItem = ({

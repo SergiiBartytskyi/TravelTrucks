@@ -52,6 +52,15 @@ export interface Review {
   comment: string;
 }
 
+export interface CampersState {
+  items: Camper[];
+  camper: Camper | null;
+  isLoading: boolean;
+  error: number | null | undefined;
+  page: number;
+  totalPages: number;
+}
+
 export interface FiltersState {
   url: string;
 }
